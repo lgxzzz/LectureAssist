@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sparr">
+        <item>学生</item>
+        <item>用户</item>
+        <item>老师</item>
+        <item>学院</item>
+        <item>课程</item>
+        <item>评价</item>
+        <item>得分</item>
+    </string-array>
+</resources>

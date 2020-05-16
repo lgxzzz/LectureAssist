@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">课堂小助手</string>
+    <string name="view_analysis">查看解析</string>
+    <string name="answer_analysis">答案解析</string>
+</resources>

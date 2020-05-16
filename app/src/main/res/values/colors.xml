@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="colorWhite">#ffff</color>
+    <color name="colorSpiltWhite">#d4d4d4</color>
+    <!--common color-->
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colormediaController_bg">#787878</color>
+    <color name="colormediaController_">#7878</color>
+    <color name="color_Primary_grey">#FFA1A4AB</color>
+    <color name="color_half_transparent">#88000000</color>
+
+
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_bg">#F0F2F5</color>
+    <color name="color_toolbar_bg">#FFFFFF</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="colorBaseWhite">#FFFFFF</color>
+    <color name="color_FE7F4F">#FE7F4F</color>
+    <color name="color_333333">#333333</color>
+
+
+    <!--gray color-->
+    <color name="color_dark_grey">#34455C</color>
+    <color name="color_dark_grey_two">#FF454547</color>
+    <color name="color_dark_grey_three">#333333</color>
+    <color name="color_slate_grey">#616B7A</color>
+    <color name="color_cool_grey">#8E98A4</color>
+    <color name="color_cool_grey_three">#dedede</color>
+    <color name="color_cool_grey_two">#f8f8f8</color>
+    <color name="color_silver">#C4C7CC</color>
+    <color name="color_silver_two">#DCDEE0</color>
+    <color name="color_pale_grey">#F0F2F5</color>
+    <color name="color_pale_lilac">#E8E5FF</color>
+
+    <!--accent color-->
+    <color name="colorAccentPress">#FF5843bf</color>
+    <color name="colorAccent_two">#7562D9</color>
+    <color name="colorAccentLight">#FF9381eb</color>
+    <color name="colorAccen">#4C9CFE</color>
+    <color name="colorAccentDisable">#FFb7adf8</color>
+    <color name="colorAccentWhite">#e9e5ff</color>
+
+
+    <color name="color_rose_red">#E8415D</color>
+    <color name="color_accent_red">#BD10E0</color>
+    <color name="color_lightGold">#FFD750</color>
+    <color name="color_squash">#F5A623</color>
+    <color name="color_dodgerBlue">#539EFF</color>
+    <color name="color_bright_blue">#0076ff</color>
+    <color name="color_green">#48E066</color>
+
+    <color name="color_perrywinkleTwo">#7FADE2</color>
+
+    <color name="color_darkPeach">#D87272</color>
+    <color name="color_darkGreen">#93CB87</color>
+    <color name="color_orchid">#B186D7</color>
+    <color name="color_fadedOrange">#ED974D</color>
+
+    <color name="color_darkOrsay">#E0C072</color>
+    <color name="color_darkIndependent">#FFF3E5</color>
+    <color name="color_greyishBrown">#444444</color>
+    <color name="color_sandyBrown">#C29D64</color>
+    <color name="color_cardIndependent">#048364</color>
+    <color name="color_cardOrsay">#2A549E</color>
+    <color name="color_cardGaokao">#B0842B</color>
+
+    <color name="color_view_grey">#E0E0E0</color>
+    <color name="color_time_grey">#CACACA</color>
+
+
+
+    <color name="tab_default">#999090</color>
+    <color name="tab_selector">#f73657</color>
+    <color name="deep_main_color">#f73657</color>
+    <color name="text_radiobutton_color">#e60012</color>
+    <color name="text_main_color">#4d4d4d</color>
+
+
+    <color name="color_4CBCFE">#4CBCFE</color>
+    <color name="color_468ADE">#468ADE</color>
+
+
+    <!--电子书-->
+    <color name="color_fff_99">#99ffffff</color>
+    <color name="color_2c">#2c2c2c</color>
+    <color name="color_cec29c">#CEC29C</color>
+    <color name="color_2f332d">#2f332d</color>
+    <color name="color_ccebcc">#ccebcc</color>
+    <color name="color_92918c">#92918c</color>
+    <color name="color_aaa">#aaaaaa</color>
+    <color name="color_383429">#383429</color>
+    <color name="color_d1cec5">#d1cec5</color>
+    <color name="color_627176">#627176</color>
+    <color name="color_001c27">#001c27</color>
+    <color name="black">#FF000000</color>
+    <color name="color_4C9CFE">#4C9CFE</color>
+    <color name="color_77fadb08">#77fadb08</color>
+    <color name="color_FF5529">#FF5529</color>
+    <color name="color_708170">#708170</color>
+
+
+    <!--                     v2.0                    -->
+    <color name="es_bg">#F5F5F5</color>
+    <color name="es_bg_white">#FFFFFF</color>
+    <color name="bar_line">#F1F1F1</color>
+
+    <color name="es_green">#01AE66</color>
+    <color name="yellow">#FF9800</color>
+    <color name="red">#FF5722</color>
+    <color name="gray">#808080</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="es_font_white">#FFFFFF</color>
+
+
+
+    <color name="es_font_1">#313131</color>
+    <color name="es_font_2">#616161</color>
+    <color name="es_font_3">#919191</color>
+    <color name="es_font_4">#B0BDC9</color>
+    <color name="es_divider">#F5F5F5</color>
+</resources>
