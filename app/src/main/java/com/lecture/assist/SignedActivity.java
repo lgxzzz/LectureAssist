@@ -75,6 +75,7 @@ public class SignedActivity extends BaseActivity {
                         //获取课堂的管理者
                         key = keyEdit.getText().toString().trim();
                         avObject.put("class_signin_number",key);
+                        avObject.put("user_position",LectureAssistApplication.mLongitude+","+LectureAssistApplication.mLatitude);
                         Log.i(TAG, "done: "+key);
                         avObject.saveInBackground(new SaveCallback() {
                             @Override

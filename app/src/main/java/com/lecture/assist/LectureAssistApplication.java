@@ -21,6 +21,11 @@ public class LectureAssistApplication extends Application {
     private LocationMgr mLocationMgr;
     //逆地理编码
     private GeoSearchMgr mGeoSearchMgr;
+
+    public static Double mLongitude;
+    public static Double mLatitude;
+    public static String mPosition;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,7 +43,9 @@ public class LectureAssistApplication extends Application {
         mLocationMgr.getLonLat(this, new LocationMgr.LonLatListener() {
             @Override
             public void getLonLat(AMapLocation aMapLocation) {
-
+                mLongitude = aMapLocation.getLongitude();
+                mLatitude = aMapLocation.getLatitude();
+                mPosition = mLongitude+","+mLatitude;
             }
         });
     }

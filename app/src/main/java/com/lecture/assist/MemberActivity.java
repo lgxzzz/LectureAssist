@@ -15,6 +15,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
 import com.lecture.assist.base.BaseActivity;
+import com.lecture.assist.utils.MapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,15 @@ public class MemberActivity extends BaseActivity {
                     Log.i(TAG, "done: 签到已经开始");
                     if (avObject != null) {
                         String key = avObject.get("class_signin_number").toString();
+                        String position = avObject.get("user_position").toString();
                         String member_key = memberSiginEdit.getText().toString().trim();
+                        //判断是否超过距离
+                        int dis = MapUtil.distance(position,LectureAssistApplication.mPosition);
+                        if (dis>500){
+                            Toast.makeText(activity, "超过签到距离，签到失败", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         if (key != null && !key.equals("") && key.equals(member_key)){
                             List<String>list = avObject.getList("user_sigin_list");
                             if ( list == null){
