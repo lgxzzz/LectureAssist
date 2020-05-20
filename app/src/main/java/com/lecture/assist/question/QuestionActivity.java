@@ -85,6 +85,10 @@ public class QuestionActivity extends BaseActivity {
             homeworkQuestionBean1.setMetas(metas);
             homeworkQuestionBean1.setStem("1、下列发的形式中，由全国人民代表大会及其常务委员会经一定立法程序制定颁布，" +
                     "调整国家、社会和公民生活中基本社会关系的是（）。");
+            homeworkQuestionBean1.setAnalysis("选项A：宪法由全国人民代表大会制定." +
+                    "选项B：行政法规由国务院制定." +
+                    "选项C：法律由全国人民代表大会及其常务委员会经一定立法程序制定颁布." +
+                    "选项D：行政规章包括部门规章和地方政府规章，部门规章由国务院所属部委制定，地方政府规章由“一省三市”地方政府制定.");
             mQuestionList.add(homeworkQuestionBean1);
         }
 

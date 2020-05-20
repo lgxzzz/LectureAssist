@@ -1,6 +1,7 @@
 package com.lecture.assist;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,74 +74,80 @@ public class MemberActivity extends BaseActivity {
                 if (e == null) {
                     Log.i(TAG, "done: 签到已经开始");
                     if (avObject != null) {
-                        String key = avObject.get("class_signin_number").toString();
-                        String position = avObject.get("user_position").toString();
-                        String member_key = memberSiginEdit.getText().toString().trim();
+                        final String key = avObject.get("class_signin_number").toString();
+                        final String position = avObject.get("user_position").toString();
+                        final String member_key = memberSiginEdit.getText().toString().trim();
                         //判断是否超过距离
-                        int dis = MapUtil.distance(position,LectureAssistApplication.mPosition);
-                        if (dis>500){
-                            Toast.makeText(activity, "超过签到距离，签到失败", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        if (key != null && !key.equals("") && key.equals(member_key)){
-                            List<String>list = avObject.getList("user_sigin_list");
-                            if ( list == null){
-                                list = new ArrayList<>();
-                            }
-                            if (!list.contains(AVUser.getCurrentUser().getObjectId().toString())){
-                                list.add(AVUser.getCurrentUser().getObjectId().toString());
-                                avObject.put("user_sigin",list);
-                                avObject.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(AVException e) {
-                                        if ( e == null){
-                                            Toast.makeText(MemberActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
-                                            Map<String,Integer>map = avObject.getMap("class_user_rank");
-                                            int value = map.get(AVUser.getCurrentUser().getObjectId());
-                                            value += 2;
-                                            map.put(AVUser.getCurrentUser().getObjectId(),value);
-                                            avObject.put("class_user_rank",map);
-                                            final int finalValue = value;
-                                            avObject.saveInBackground(new SaveCallback() {
-                                                @Override
-                                                public void done(AVException e) {
-                                                    Log.i(TAG, "done: 经验值加上了");
-                                                    AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
-                                                    final int finalRank = finalValue;
-                                                    avUserAVQuery.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+//                        int dis = MapUtil.distance(position,LectureAssistApplication.mPosition);
+                        MapUtil.distance(position, LectureAssistApplication.mPosition, new MapUtil.IOnDistance() {
+                            @Override
+                            public void getDistance(int dis) {
+//                                if (dis>500){
+//                                    Looper.prepare();
+//                                    Toast.makeText(MemberActivity.this, "超过签到距离，签到失败", Toast.LENGTH_SHORT).show();
+//                                    Looper.loop();
+//                                    return;
+//                                }
+                                if (key != null && !key.equals("") && key.equals(member_key)){
+                                    List<String>list = avObject.getList("user_sigin_list");
+                                    if ( list == null){
+                                        list = new ArrayList<>();
+                                    }
+                                    if (!list.contains(AVUser.getCurrentUser().getObjectId().toString())){
+                                        list.add(AVUser.getCurrentUser().getObjectId().toString());
+                                        avObject.put("user_sigin",list);
+                                        avObject.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(AVException e) {
+                                                if ( e == null){
+                                                    Toast.makeText(MemberActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
+                                                    Map<String,Integer>map = avObject.getMap("class_user_rank");
+                                                    int value = map.get(AVUser.getCurrentUser().getObjectId());
+                                                    value += 2;
+                                                    map.put(AVUser.getCurrentUser().getObjectId(),value);
+                                                    avObject.put("class_user_rank",map);
+                                                    final int finalValue = value;
+                                                    avObject.saveInBackground(new SaveCallback() {
                                                         @Override
-                                                        public void done(AVUser avUser, AVException e) {
-                                                            if (e == null){
-                                                                int rank = avUser.getInt("all_rank");
-                                                                rank =  rank + 2;
-                                                                Log.i(TAG, "done: "+rank);
-                                                                avUser.put("all_rank",rank);
-                                                                avUser.saveInBackground(new SaveCallback() {
-                                                                    @Override
-                                                                    public void done(AVException e) {
-                                                                        Log.i(TAG, "done: all score update");
+                                                        public void done(AVException e) {
+                                                            Log.i(TAG, "done: 经验值加上了");
+                                                            AVQuery<AVUser> avUserAVQuery = new AVQuery<>("_User");
+                                                            final int finalRank = finalValue;
+                                                            avUserAVQuery.getInBackground(final_user.getObjectId(), new GetCallback<AVUser>() {
+                                                                @Override
+                                                                public void done(AVUser avUser, AVException e) {
+                                                                    if (e == null){
+                                                                        int rank = avUser.getInt("all_rank");
+                                                                        rank =  rank + 2;
+                                                                        Log.i(TAG, "done: "+rank);
+                                                                        avUser.put("all_rank",rank);
+                                                                        avUser.saveInBackground(new SaveCallback() {
+                                                                            @Override
+                                                                            public void done(AVException e) {
+                                                                                Log.i(TAG, "done: all score update");
+                                                                            }
+                                                                        });
+                                                                    }else {
+                                                                        Log.e(TAG, "done: failde" );
                                                                     }
-                                                                });
-                                                            }else {
-                                                                Log.e(TAG, "done: failde" );
-                                                            }
+                                                                }
+                                                            });
                                                         }
                                                     });
+                                                    activity.finish();
                                                 }
-                                            });
-                                            activity.finish();
-                                        }
+                                            }
+                                        });
+                                    }else {
+                                        Toast.makeText(activity, "你已经签到过了", Toast.LENGTH_SHORT).show();
                                     }
-                                });
-                            }else {
-                                Toast.makeText(activity, "你已经签到过了", Toast.LENGTH_SHORT).show();
+
+
+                                }else {
+                                    Toast.makeText(activity, "签到码错误", Toast.LENGTH_SHORT).show();
+                                }
                             }
-
-
-                        }else {
-                            Toast.makeText(activity, "签到码错误", Toast.LENGTH_SHORT).show();
-                        }
+                        });
                     } else {
                         Toast.makeText(activity, "签到未开始", Toast.LENGTH_SHORT).show();
                     }
@@ -148,4 +155,6 @@ public class MemberActivity extends BaseActivity {
             }
         });
     }
+
+
 }

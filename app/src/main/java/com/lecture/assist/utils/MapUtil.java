@@ -27,8 +27,8 @@ public class MapUtil {
         //1.计算两个经纬度之间的距离
         String origin = "104.043390" + "," + "30.641982";  // 格式:经度,纬度;注意：高德最多取小数点后六位
         String target = "106.655347" + "," + "31.786691";
-        int distance = distance(origin, target);
-        System.out.println("原坐标:{"+origin+"}，目标坐标:{"+target+"}--------->计算后距离：" + distance);
+//        int distance = distance(origin, target);
+//        System.out.println("原坐标:{"+origin+"}，目标坐标:{"+target+"}--------->计算后距离：" + distance);
 
         //2.地址转换高德坐标
         String address = "成都市武侯区";
@@ -47,25 +47,32 @@ public class MapUtil {
      * String origins:起始坐标
      * String destination:终点坐标
      */
-    public static int distance(String origins, String destination) {
-        int strategy = 0;
-        /**
-         * 0:速度优先（时间）; 1:费用优先（不走收费路段的最快道路）;2:距离优先; 3:不走快速路 4躲避拥堵;
-         * 5:多策略（同时使用速度优先、费用优先、距离优先三个策略计算路径）;6:不走高速; 7:不走高速且避免收费;
-         * 8:躲避收费和拥堵; 9:不走高速且躲避收费和拥堵
-         */
-        String url = BASE_PATH + "/direction/driving?" + "origin=" + origins + "&destination=" + destination
-                + "&strategy=" + strategy + "&extensions=base&key="+ KEY;
-        try{
-            JSONObject jsonobject = new JSONObject(getHttpResponse(url));
+    public static void distance(final String origins,final  String destination,final IOnDistance listener) {
 
-            JSONArray pathArray = jsonobject.getJSONObject("route").getJSONArray("paths");
-            String distanceString = pathArray.getJSONObject(0).getString("distance");
-            return Integer.parseInt(distanceString);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return 0;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int strategy = 0;
+                /**
+                 * 0:速度优先（时间）; 1:费用优先（不走收费路段的最快道路）;2:距离优先; 3:不走快速路 4躲避拥堵;
+                 * 5:多策略（同时使用速度优先、费用优先、距离优先三个策略计算路径）;6:不走高速; 7:不走高速且避免收费;
+                 * 8:躲避收费和拥堵; 9:不走高速且躲避收费和拥堵
+                 */
+                String url = BASE_PATH + "/direction/driving?" + "origin=" + origins + "&destination=" + destination
+                        + "&strategy=" + strategy + "&extensions=base&key="+ KEY;
+                try{
+                    JSONObject jsonobject = new JSONObject(getHttpResponse(url));
+
+                    JSONArray pathArray = jsonobject.getJSONObject("route").getJSONArray("paths");
+                    String distanceString = pathArray.getJSONObject(0).getString("distance");
+                    listener.getDistance(Integer.parseInt(distanceString));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
     }
 
     /**
@@ -141,6 +148,10 @@ public class MapUtil {
             }
         }
         return null;
+    }
+
+    public interface IOnDistance{
+        public void getDistance(int dis);
     }
 }
 
