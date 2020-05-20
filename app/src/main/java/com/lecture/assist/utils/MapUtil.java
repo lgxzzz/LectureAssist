@@ -68,6 +68,7 @@ public class MapUtil {
                     listener.getDistance(Integer.parseInt(distanceString));
                 }catch (Exception e){
                     e.printStackTrace();
+                    listener.getDistance(-1);
                 }
             }
         }).start();

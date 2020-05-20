@@ -88,6 +88,12 @@ public class MemberActivity extends BaseActivity {
 //                                    Looper.loop();
 //                                    return;
 //                                }
+//                                if (dis==-1){
+//                                    Looper.prepare();
+//                                    Toast.makeText(MemberActivity.this, "位置信息出错，签到失败", Toast.LENGTH_SHORT).show();
+//                                    Looper.loop();
+//                                    return;
+//                                }
                                 if (key != null && !key.equals("") && key.equals(member_key)){
                                     List<String>list = avObject.getList("user_sigin_list");
                                     if ( list == null){
@@ -139,12 +145,17 @@ public class MemberActivity extends BaseActivity {
                                             }
                                         });
                                     }else {
+                                        Looper.prepare();
                                         Toast.makeText(activity, "你已经签到过了", Toast.LENGTH_SHORT).show();
+                                        Looper.loop();
+
                                     }
 
 
                                 }else {
+                                    Looper.prepare();
                                     Toast.makeText(activity, "签到码错误", Toast.LENGTH_SHORT).show();
+                                    Looper.loop();
                                 }
                             }
                         });

@@ -99,13 +99,18 @@ public class MemberFragment extends BaseFragment {
                 if (e == null) {
                     Log.i(TAG, "done: 签到已经开始");
                     if (avObject != null) {
-                        String key = avObject.get("class_signin_number").toString();
-                        if (key != null && !key.equals("") ){
-                            startActivityTo(MemberActivity.class,random_number);
-                        }else {
+                        if (avObject.get("class_signin_number")!=null){
+                            String key = avObject.get("class_signin_number").toString();
+                            if (key != null && !key.equals("") ){
+                                startActivityTo(MemberActivity.class,random_number);
+                            }else {
 
-                            Toast.makeText(getActivity(), "签到未开始", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "签到未开始", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(getActivity(), "签到码为空", Toast.LENGTH_SHORT).show();
                         }
+
                     } else {
                     }
                 }
